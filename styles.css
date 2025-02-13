@@ -65,7 +65,8 @@ body {
     text-decoration: none;
     color: rgb(0, 0, 0);
     font-weight: 500;
-    font-size: 1.2rem;  /* Added this line to increase font size */
+    font-size: 1.2rem;
+    /* Added this line to increase font size */
     transition: color 0.3s ease;
 }
 
@@ -81,7 +82,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0 10%;
-    margin-top: 0;  /* Removed the margin-top */
+    margin-top: 0;
+    /* Removed the margin-top */
 }
 
 .hero-container {
@@ -119,14 +121,19 @@ body {
     background-color: var(--color-beige);
     border-radius: 20px;
     max-width: 600px;
-    opacity: 0; /* Start hidden */
-    animation: fadeIn 1s ease-out 0.1s forwards; /* 0.5s delay */
+    opacity: 0;
+    /* Start hidden */
+    animation: fadeIn 1s ease-out 0.1s forwards;
+    /* 0.5s delay */
 }
 
 .hero-photo {
-    width: 100%; /* Fill the container */
-    height: 100%; /* Fill the container */
-    object-fit: cover; /* Maintain aspect ratio */
+    width: 100%;
+    /* Fill the container */
+    height: 100%;
+    /* Fill the container */
+    object-fit: cover;
+    /* Maintain aspect ratio */
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -140,8 +147,10 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    text-decoration: none;  /* Dodane dla linku */
-    display: inline-block;  /* Dodane dla linku */
+    text-decoration: none;
+    /* Dodane dla linku */
+    display: inline-block;
+    /* Dodane dla linku */
 }
 
 .cta-button:hover {
@@ -150,7 +159,8 @@ body {
 
 /* Services Section */
 .services {
-    min-height: 100vh;  /* This sets minimum height to full viewport height */
+    min-height: 100vh;
+    /* This sets minimum height to full viewport height */
     padding: 5rem 10%;
     background-color: var(--color-white);
 }
@@ -169,17 +179,65 @@ body {
 }
 
 .service-card {
-    background-color: var(--color-tan);
-    padding: 2rem;
+    height: 600px;
+    position: relative;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    overflow: hidden;
+    background-image: url('img/group-yoga.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;  /* Smooth transition for any transform effects */
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+    transition: all 0.3s ease;  /* Smooth transition for the overlay */
+}
+
+/* Hover effect */
+.service-card:hover::before {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));  /* Lighter overlay on hover */
+}
+
+.service-card:hover {
+    transform: scale(1.02);  /* Slightly scale up the card on hover */
 }
 
 .service-card h3 {
-    color: #8e44ad;
-    margin-bottom: 1rem;
+    position: absolute;
+    top: 10px;
+    /* Position from bottom */
+    left: 0;
+    right: 0;
+    color: white;
+    text-align: center;
+    font-size: 2.2rem;
+    padding: 1rem;
+    z-index: 1;
+    /* Place above the gradient overlay */
 }
+
+/* Hide the description text */
+.service-card p {
+    display: none;
+}
+
+/* Make all links fill the card for better clickability */
+.service-card a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
 
 /* About Section */
 .about {
@@ -199,11 +257,16 @@ body {
 
 .about-content {
     display: flex;
-    align-items: flex-start;  /* Change from center to allow better text flow */
-    justify-content: space-between;  /* Change from center to space-between */
-    gap: 4rem;  /* Reduce gap to allow more space for text */
-    width: 100%;  /* Ensure full width */
-    max-width: 1200px;  /* Increase max-width of container */
+    align-items: flex-start;
+    /* Change from center to allow better text flow */
+    justify-content: space-between;
+    /* Change from center to space-between */
+    gap: 4rem;
+    /* Reduce gap to allow more space for text */
+    width: 100%;
+    /* Ensure full width */
+    max-width: 1200px;
+    /* Increase max-width of container */
     margin: auto;
 }
 
@@ -212,24 +275,32 @@ body {
 
 
 .about-photo {
-    width: 100%; /* Fill the container */
-    height: 100%; /* Fill the container */
-    object-fit: cover; /* Maintain aspect ratio */
+    width: 100%;
+    /* Fill the container */
+    height: 100%;
+    /* Fill the container */
+    object-fit: cover;
+    /* Maintain aspect ratio */
     border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 0; /* Start hidden */
-    animation: fadeIn 1s ease-out 0.3s forwards; /* 0.3s delay */
+    opacity: 0;
+    /* Start hidden */
+    animation: fadeIn 1s ease-out 0.3s forwards;
+    /* 0.3s delay */
 }
 
 .about-image {
-    width: 350px;  /* Reduce from 400px to make it smaller and move left */
+    width: 350px;
+    /* Reduce from 400px to make it smaller and move left */
     height: 400px;
     flex-shrink: 0;
 }
 
 .about-text {
-    flex: 1;  /* Change to 1 to allow natural growth */
-    min-width: 700px;  /* Set minimum width */
+    flex: 1;
+    /* Change to 1 to allow natural growth */
+    min-width: 700px;
+    /* Set minimum width */
     font-size: 1.2rem;
 }
 
@@ -301,6 +372,7 @@ footer p {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -310,7 +382,8 @@ footer p {
 /* Add this class for elements you want to animate */
 .fade-in {
     animation: fadeIn 1s ease-out forwards;
-    opacity: 0; /* Start with opacity 0 */
+    opacity: 0;
+    /* Start with opacity 0 */
 }
 
 /* Responsive Design */
@@ -339,11 +412,13 @@ footer p {
 
     .about-image {
         margin-bottom: 2rem;
-        flex: 0 0 150px; /* Even smaller on mobile */
+        flex: 0 0 150px;
+        /* Even smaller on mobile */
     }
 
     .about-photo {
-        height: 150px; /* Smaller height on mobile */
+        height: 150px;
+        /* Smaller height on mobile */
     }
 
     .footer-content {
