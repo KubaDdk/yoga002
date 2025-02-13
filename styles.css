@@ -1,0 +1,347 @@
+/* Color Variables */
+:root {
+    --color-beige: #EEE6CD;
+    --color-sage: #FDF1D3;
+    --color-tan: #e9d3b1;
+    --color-brown: #9D5B34;
+    --color-white: #fcf7eb;
+}
+
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 10%;
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Class to hide navbar when scrolling down */
+.navbar--hidden {
+    transform: translateY(-100%);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Optional: Add a slight background on scroll for better text visibility */
+.navbar--scrolled {
+    background-color: transparent;
+}
+
+.logo h1 {
+    color: rgb(0, 0, 0);
+    font-size: 1.8rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-size: 1.2rem;  /* Added this line to increase font size */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-brown);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background-color: var(--color-sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    margin-top: 0;  /* Removed the margin-top */
+}
+
+.hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 4rem;
+}
+
+.hero-content {
+    background-color: var(--color-tan);
+    padding: 3rem;
+    border-radius: 20px;
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: black;
+}
+
+.hero-image {
+    flex: 1;
+    height: 600px;
+    background-color: var(--color-beige);
+    border-radius: 20px;
+    max-width: 600px;
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1s ease-out 0.1s forwards; /* 0.5s delay */
+}
+
+.hero-photo {
+    width: 100%; /* Fill the container */
+    height: 100%; /* Fill the container */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background-color: var(--color-brown);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--color-tan);
+}
+
+/* Services Section */
+.services {
+    min-height: 100vh;  /* This sets minimum height to full viewport height */
+    padding: 5rem 10%;
+    background-color: var(--color-white);
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+    font-size: 3rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background-color: var(--color-tan);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.service-card h3 {
+    color: #8e44ad;
+    margin-bottom: 1rem;
+}
+
+/* About Section */
+.about {
+    min-height: 100vh;
+    background-color: var(--color-sage);
+    padding: 5rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+    font-size: 3rem;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    max-width: 1000px;
+    margin: auto;
+    flex: 1;
+    font-size: 1.6rem;
+}
+
+
+.about-image {
+    width: 400px; /* Explicitly set width */
+    height: 400px; /* Explicitly set height */
+    flex-shrink: 0;
+}
+
+.about-photo {
+    width: 100%; /* Fill the container */
+    height: 100%; /* Fill the container */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1s ease-out 0.3s forwards; /* 0.3s delay */
+}
+
+/* Contact Section */
+.contact {
+    padding: 5rem 5%;
+    background-color: var(--color-white);
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.submit-button {
+    padding: 1rem;
+    background-color: #8e44ad;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #732d91;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Animations: */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add this class for elements you want to animate */
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0; /* Start with opacity 0 */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+    }
+
+    .nav-links li {
+        margin: 0 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image {
+        margin-bottom: 2rem;
+        flex: 0 0 150px; /* Even smaller on mobile */
+    }
+
+    .about-photo {
+        height: 150px; /* Smaller height on mobile */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-info {
+        margin-bottom: 2rem;
+    }
+}
