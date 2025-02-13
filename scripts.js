@@ -15,43 +15,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar scroll behavior
+// Mobile menu toggle
+const hamburger = document.querySelector('.hamburger-menu');
+const navLinks = document.querySelector('.nav-links');
+
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+        hamburger.classList.toggle('active');
+    });
+}
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            navLinks.classList.remove('nav-active');
+            hamburger.classList.remove('active');
+        }
+    });
+});
+
+// Navbar scroll behavior (desktop only)
 let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
 
-// Only apply scroll behavior on screens larger than 768px
 window.addEventListener('scroll', () => {
-    // Check if screen width is greater than 768px
     if (window.innerWidth > 768) {
         const currentScroll = window.pageYOffset;
         
-        // Add background when scrolled down
         if (currentScroll > 50) {
             navbar.classList.add('navbar--scrolled');
         } else {
             navbar.classList.remove('navbar--scrolled');
         }
         
-        // Hide/show navbar based on scroll direction
         if (currentScroll > lastScroll && currentScroll > 100) {
-            // Scrolling down & past navbar
             navbar.classList.add('navbar--hidden');
         } else {
-            // Scrolling up
             navbar.classList.remove('navbar--hidden');
         }
         
         lastScroll = currentScroll;
     } else {
-        // Remove any scroll-related classes on mobile
-        navbar.classList.remove('navbar--hidden');
-        navbar.classList.remove('navbar--scrolled');
-    }
-});
-
-// Update navbar classes when window is resized
-window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
         navbar.classList.remove('navbar--hidden');
         navbar.classList.remove('navbar--scrolled');
     }
