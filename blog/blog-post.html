@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - Little Yogini</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .blog-post-container {
+            padding: 120px 5% 5rem;
+            background-color: var(--color-sage);
+            min-height: 100vh;
+        }
+        
+        .blog-post {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--color-white);
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-post img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-title {
+            color: var(--color-brown);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-post-date {
+            color: #666;
+            margin-bottom: 2rem;
+            display: block;
+        }
+        
+        .blog-post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .blog-post-content p {
+            margin-bottom: 1rem;  /* Reduced from 1.5rem to 1rem */
+        }
+        
+        .blog-post-content {
+            line-height: 1.4;  /* Slightly reduced from 1.8 */
+        }
+        
+        @media (max-width: 768px) {
+            .blog-post-container {
+                padding: 100px 3% 3rem;
+            }
+            
+            .blog-post {
+                padding: 1rem;
+            }
+            
+            .blog-post img {
+                height: 250px;
+            }
+            
+            .blog-post-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Little Yogini</h1>
+        </div>
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html#home">Home</a></li>
+            <li><a href="../index.html#services">Oferta</a></li>
+            <li><a href="../index.html#blog">Blog</a></li>
+            <li><a href="../index.html#about">O mnie</a></li>
+            <li><a href="../index.html#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <div class="blog-post-container">
+        <article class="blog-post" id="blog-post">
+            <!-- Content will be dynamically inserted here -->
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Little Yogini. All rights reserved.</p>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script>
+        async function loadBlogPost() {
+            try {
+                // Get the post ID from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const postId = urlParams.get('id');
+                
+                if (!postId) {
+                    throw new Error('No post ID specified');
+                }
+
+                // Fetch the blog posts data
+                const response = await fetch('../blog-posts.json');
+                const data = await response.json();
+                
+                // Find the specific post
+                const post = data.posts.find(p => p.id === postId);
+                
+                if (!post) {
+                    throw new Error('Post not found');
+                }
+
+                // Format the date
+                const date = new Date(post.date).toLocaleDateString('pl-PL', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                // Update the page content
+                const blogPost = document.getElementById('blog-post');
+                blogPost.innerHTML = `
+                    <img src="../${post.image}" alt="${post.title}">
+                    <h1 class="blog-post-title">${post.title}</h1>
+                    <span class="blog-post-date">${date}</span>
+                    <div class="blog-post-content">
+                        ${post.content
+                            .split('\n')
+                            .map(paragraph => {
+                                // Convert **text** to <strong>text</strong>
+                                const formattedText = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                                return `<p>${formattedText}</p>`;
+                            })
+                            .join('')}
+                    </div>
+                `;
+
+                // Update the page title
+                document.title = `${post.title} - Little Yogini`;
+
+            } catch (error) {
+                console.error('Error loading blog post:', error);
+                document.getElementById('blog-post').innerHTML = `
+                    <h1 class="blog-post-title">Post not found</h1>
+                    <p>Sorry, we couldn't find the blog post you're looking for.</p>
+                `;
+            }
+        }
+
+        // Load the blog post when the page loads
+        window.addEventListener('DOMContentLoaded', loadBlogPost);
+    </script>
+</body>
+</html>
