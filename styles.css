@@ -183,10 +183,22 @@ body {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    background-image: url('img/group-yoga.jpg');
     background-size: cover;
     background-position: center;
     transition: transform 0.3s ease;  /* Smooth transition for any transform effects */
+}
+
+/* Specific background images for each card */
+.service-card:nth-child(1) {
+    background-image: url('img/private.jpg'); /* Private Sessions */
+}
+
+.service-card:nth-child(2) {
+    background-image: url('img/group-yoga.jpg'); /* Group Classes */
+}
+
+.service-card:nth-child(3) {
+    background-image: url('img/meditation.jpg'); /* Meditation */
 }
 
 .service-card::before {
