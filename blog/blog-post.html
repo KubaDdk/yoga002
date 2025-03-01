@@ -48,14 +48,28 @@
         }
         
         .blog-post-content p {
-            margin-bottom: 1rem;  /* Reduced from 1.5rem to 1rem */
+            margin-bottom: 1rem;
         }
         
-        .blog-post-content {
-            line-height: 1.4;  /* Slightly reduced from 1.8 */
-        }
-        
+        /* Mobile nav active class definition - ensuring it's properly defined in this file */
         @media (max-width: 768px) {
+            .nav-active {
+                right: 0 !important;
+                display: flex !important;
+            }
+            
+            .hamburger-menu.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger-menu.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
             .blog-post-container {
                 padding: 100px 3% 3rem;
             }
@@ -80,12 +94,12 @@
         <div class="logo">
             <h1>Little Yogini</h1>
         </div>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburger-menu">
             <span></span>
             <span></span>
             <span></span>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="../index.html#home">Home</a></li>
             <li><a href="../index.html#services">Oferta</a></li>
             <li><a href="../index.html#blog">Blog</a></li>
@@ -106,34 +120,31 @@
         <p>&copy; 2025 Little Yogini. All rights reserved.</p>
     </footer>
 
-    <script src="../scripts.js"></script>
+    <!-- Inline script for immediate execution -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality
-            const hamburger = document.querySelector('.hamburger-menu');
-            const navLinks = document.querySelector('.nav-links');
-
-            if (hamburger) {
-                hamburger.addEventListener('click', function() {
-                    navLinks.classList.toggle('nav-active');
-                    hamburger.classList.toggle('active');
-                });
-            }
-
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        navLinks.classList.remove('nav-active');
-                        hamburger.classList.remove('active');
-                    }
-                });
+        // Immediately set up mobile menu toggle - no waiting for DOMContentLoaded
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        if (hamburgerMenu) {
+            hamburgerMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('nav-active');
+                hamburgerMenu.classList.toggle('active');
+                console.log('Menu clicked'); // Debug log
             });
-
-            // Load blog post content
-            loadBlogPost();
+        }
+        
+        // Close mobile menu when clicking a link
+        const navLinkElements = document.querySelectorAll('.nav-links a');
+        navLinkElements.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('nav-active');
+                hamburgerMenu.classList.remove('active');
+            });
         });
-
+    </script>
+    
+    <script>
         async function loadBlogPost() {
             try {
                 // Get the post ID from the URL
@@ -191,6 +202,11 @@
                 `;
             }
         }
+
+        // Run the load blog post function after the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBlogPost();
+        });
     </script>
 </body>
 </html>
