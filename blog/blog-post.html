@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post - Little Yogini</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../mobile.css">
     <style>
         .blog-post-container {
             padding: 120px 5% 5rem;
@@ -107,6 +108,32 @@
 
     <script src="../scripts.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('nav-active');
+                    hamburger.classList.toggle('active');
+                });
+            }
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('nav-active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            });
+
+            // Load blog post content
+            loadBlogPost();
+        });
+
         async function loadBlogPost() {
             try {
                 // Get the post ID from the URL
@@ -164,9 +191,6 @@
                 `;
             }
         }
-
-        // Load the blog post when the page loads
-        window.addEventListener('DOMContentLoaded', loadBlogPost);
     </script>
 </body>
 </html>

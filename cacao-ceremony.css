@@ -1,0 +1,205 @@
+/* Specific styles for cacao ceremony page */
+.cacao-ceremony-section {
+    padding: 120px 5% 5rem;
+    background-color: var(--color-sage);
+    min-height: 100vh;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--color-white);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ceremony-content {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.ceremony-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ceremony-header h2 {
+    color: var(--color-brown);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.ceremony-date {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--color-brown);
+    margin: 1rem 0;
+}
+
+.ceremony-container {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.ceremony-description {
+    flex: 1;
+    line-height: 1.6;
+}
+
+.ceremony-image {
+    flex: 1;
+    max-width: 40%;
+}
+
+.cacao-photo {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ceremony-section {
+    background-color: var(--color-beige);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.ceremony-section h3 {
+    color: var(--color-brown);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.ceremony-section ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.ceremony-section li {
+    margin-bottom: 0.5rem;
+}
+
+.emphasis {
+    font-weight: bold;
+    color: var(--color-brown);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.quote {
+    font-style: italic;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-tan);
+}
+
+.conclusion {
+    text-align: center;
+}
+
+.compact-section {
+    padding: 1.5rem;
+}
+
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+}
+
+.card-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--color-brown);
+}
+
+.contact-detail {
+    font-size: 0.95rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .cacao-ceremony-section {
+        padding: 100px 3% 3rem;
+    }
+
+    .section-container {
+        padding: 1rem;
+    }
+
+    .ceremony-container {
+        flex-direction: column-reverse;
+    }
+
+    .ceremony-image {
+        max-width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .cacao-photo {
+        height: 300px;
+    }
+
+    .ceremony-section {
+        padding: 1.5rem;
+    }
+
+    .ceremony-header h2 {
+        font-size: 1.8rem;
+    }
+}
