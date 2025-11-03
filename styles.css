@@ -194,15 +194,11 @@ body {
 }
 
 .service-card:nth-child(2) {
-    background-image: url('img/group-yoga.jpg'); /* Group Classes */
+    background-image: url('img/online.jpg'); /* Online Classes */
 }
 
 .service-card:nth-child(3) {
-    background-image: url('img/cacao.jpg'); /* Caca ceremony */
-}
-
-.service-card:nth-child(4) {
-    background-image: url('img/cacao.jpg'); /* Caca ceremony */
+    background-image: url('img/group-yoga.jpg');
 }
 
 .service-card::before {
