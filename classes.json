@@ -1,0 +1,18 @@
+{
+  "classes": [
+    {
+      "id": "czwartek-1930",
+      "day": "Czwartek",
+      "dayOfWeek": 4,
+      "time": "19:30",
+      "description": "Yin Yoga – głębokie rozciąganie i relaks, idealne do zakończenia tygodnia."
+    },
+    {
+      "id": "niedziela-1030",
+      "day": "Niedziela",
+      "dayOfWeek": 0,
+      "time": "10:30",
+      "description": "Vinyasa Flow – dynamiczne zajęcia łączące ruch z oddechem, świetny start niedzieli."
+    }
+  ]
+}

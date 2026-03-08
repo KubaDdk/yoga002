@@ -123,3 +123,126 @@ async function loadBlogPosts() {
 
 // Load blog posts when the page loads
 window.addEventListener('DOMContentLoaded', loadBlogPosts);
+
+// Load classes for the reservation section
+async function loadClasses() {
+    const classCards = document.getElementById('class-cards');
+    if (!classCards) return;
+
+    try {
+        const response = await fetch('classes.json');
+        const data = await response.json();
+
+        classCards.innerHTML = data.classes.map(cls => `
+            <div class="class-card" data-id="${cls.id}" data-day="${cls.day}" data-time="${cls.time}" data-description="${cls.description}">
+                <div class="class-card-header">
+                    <span class="class-day">${cls.day}</span>
+                    <span class="class-time">${cls.time}</span>
+                </div>
+                <p class="class-description">${cls.description}</p>
+            </div>
+        `).join('');
+
+        document.querySelectorAll('.class-card').forEach(card => {
+            card.addEventListener('click', () => selectClass(card));
+        });
+
+        const info = document.getElementById('selected-class-info');
+        if (info && !info.textContent.trim()) {
+            info.textContent = 'Wybierz zajęcia z listy po lewej stronie.';
+        }
+    } catch (error) {
+        console.error('Błąd ładowania zajęć:', error);
+        classCards.innerHTML = '<p>Nie udało się załadować listy zajęć.</p>';
+    }
+}
+
+function selectClass(card) {
+    document.querySelectorAll('.class-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+
+    const day = card.dataset.day;
+    const time = card.dataset.time;
+    const description = card.dataset.description;
+    const id = card.dataset.id;
+
+    document.getElementById('form-class-id').value = id;
+    document.getElementById('form-class-day').value = day;
+    document.getElementById('form-class-time').value = time;
+    document.getElementById('form-class-desc').value = description;
+
+    const info = document.getElementById('selected-class-info');
+    info.textContent = `Wybrano: ${day} ${time} – ${description}`;
+    info.classList.add('has-selection');
+}
+
+// Handle booking form submission
+const bookingForm = document.getElementById('booking-form');
+if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const classId = document.getElementById('form-class-id').value;
+        const name = document.getElementById('form-name').value.trim();
+        const email = document.getElementById('form-email').value.trim();
+        const classDay = document.getElementById('form-class-day').value;
+        const classTime = document.getElementById('form-class-time').value;
+        const classDescription = document.getElementById('form-class-desc').value;
+        const messageEl = document.getElementById('form-message');
+        const submitBtn = document.getElementById('submit-button');
+
+        messageEl.textContent = '';
+        messageEl.className = 'form-message';
+
+        if (!classId) {
+            messageEl.textContent = 'Proszę wybrać zajęcia z listy po lewej.';
+            messageEl.classList.add('error');
+            return;
+        }
+        if (!name) {
+            messageEl.textContent = 'Proszę podać imię i nazwisko.';
+            messageEl.classList.add('error');
+            return;
+        }
+        if (!email) {
+            messageEl.textContent = 'Proszę podać adres email.';
+            messageEl.classList.add('error');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wysyłanie...';
+
+        try {
+            const res = await fetch('/api/reserve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, classId, classDay, classTime, classDescription }),
+            });
+
+            const result = await res.json();
+
+            if (res.ok && result.success) {
+                messageEl.textContent = result.message || 'Rezerwacja potwierdzona! Sprawdź swoją skrzynkę email.';
+                messageEl.classList.add('success');
+                bookingForm.reset();
+                document.querySelectorAll('.class-card').forEach(c => c.classList.remove('selected'));
+                const info = document.getElementById('selected-class-info');
+                info.textContent = 'Wybierz zajęcia z listy po lewej stronie.';
+                info.classList.remove('has-selection');
+            } else {
+                messageEl.textContent = result.error || 'Wystąpił błąd. Spróbuj ponownie.';
+                messageEl.classList.add('error');
+            }
+        } catch (error) {
+            console.error('Błąd rezerwacji:', error);
+            messageEl.textContent = 'Nie udało się połączyć z serwerem. Spróbuj ponownie.';
+            messageEl.classList.add('error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Zarezerwuj miejsce';
+        }
+    });
+}
+
+window.addEventListener('DOMContentLoaded', loadClasses);
