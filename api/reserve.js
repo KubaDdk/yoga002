@@ -29,7 +29,7 @@ module.exports = async function handler(req, res) {
     const userMailOptions = {
         from: `"Little Yogini" <${process.env.SMTP_FROM}>`,
         to: email,
-        subject: 'Potwierdzenie rezerwacji – Little Yogini',
+        subject: 'Miejsce na macie dla Ciebie już prawie gotowe – poczekaj proszę na potwierdzenie',
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
                 <h1 style="color: #9D5B34; font-size: 24px;">Już niedługo widzimy się na macie, poczekaj proszę na potwierdzenie rezerwacji!</h1>
