@@ -32,9 +32,8 @@ module.exports = async function handler(req, res) {
         subject: 'Potwierdzenie rezerwacji – Little Yogini',
         html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
-                <h1 style="color: #9D5B34; font-size: 24px;">Dziękujemy za rezerwację!</h1>
+                <h1 style="color: #9D5B34; font-size: 24px;">Już niedługo widzimy się na macie, poczekaj proszę na potwierdzenie rezerwacji!</h1>
                 <p>Cześć <strong>${name}</strong>,</p>
-                <p>Twoja rezerwacja na zajęcia jogi w <strong>Little Yogini</strong> została pomyślnie przyjęta.</p>
                 <div style="background-color: #FDF1D3; border-radius: 10px; padding: 20px; margin: 20px 0;">
                     <h2 style="color: #9D5B34; margin-top: 0;">Szczegóły rezerwacji:</h2>
                     <p><strong>Dzień:</strong> ${classDay}</p>
@@ -77,7 +76,7 @@ module.exports = async function handler(req, res) {
     try {
         await transporter.sendMail(userMailOptions);
         await transporter.sendMail(ownerMailOptions);
-        return res.status(200).json({ success: true, message: 'Rezerwacja potwierdzona! Sprawdź swoją skrzynkę email.' });
+        return res.status(200).json({ success: true, message: 'Rezerwacja wysłana! Sprawdź swoją skrzynkę email.' });
     } catch (error) {
         console.error('Błąd wysyłania emaila:', error);
         return res.status(500).json({ error: 'Nie udało się wysłać emaila potwierdzającego. Spróbuj ponownie.' });

@@ -124,6 +124,32 @@ async function loadBlogPosts() {
 // Load blog posts when the page loads
 window.addEventListener('DOMContentLoaded', loadBlogPosts);
 
+const POLISH_MONTHS = ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec',
+    'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'];
+
+function getNextClassDate(dayOfWeek, classTime) {
+    const now = new Date();
+    const today = now.getDay();
+    const [hours, minutes] = classTime.split(':').map(Number);
+
+    let daysAhead;
+    if (today === dayOfWeek) {
+        const classDateTime = new Date(now);
+        classDateTime.setHours(hours, minutes, 0, 0);
+        daysAhead = now < classDateTime ? 0 : 7;
+    } else {
+        daysAhead = (dayOfWeek - today + 7) % 7 || 7;
+    }
+
+    const result = new Date(now);
+    result.setDate(now.getDate() + daysAhead);
+    return result;
+}
+
+function formatPolishDate(date) {
+    return `${date.getDate()} ${POLISH_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+}
+
 // Load classes for the reservation section
 async function loadClasses() {
     const classCards = document.getElementById('class-cards');
@@ -133,15 +159,20 @@ async function loadClasses() {
         const response = await fetch('classes.json');
         const data = await response.json();
 
-        classCards.innerHTML = data.classes.map(cls => `
+        classCards.innerHTML = data.classes.map(cls => {
+            const nextDate = getNextClassDate(cls.dayOfWeek, cls.time);
+            const dateLabel = `${cls.day} - ${formatPolishDate(nextDate)}`;
+            return `
             <div class="class-card" data-id="${cls.id}" data-day="${cls.day}" data-time="${cls.time}" data-description="${cls.description}">
                 <div class="class-card-header">
                     <span class="class-day">${cls.day}</span>
                     <span class="class-time">${cls.time}</span>
                 </div>
+                <p class="class-date">${dateLabel}</p>
                 <p class="class-description">${cls.description}</p>
             </div>
-        `).join('');
+        `;
+        }).join('');
 
         document.querySelectorAll('.class-card').forEach(card => {
             card.addEventListener('click', () => selectClass(card));
@@ -223,7 +254,7 @@ if (bookingForm) {
             const result = await res.json();
 
             if (res.ok && result.success) {
-                messageEl.textContent = result.message || 'Rezerwacja potwierdzona! Sprawdź swoją skrzynkę email.';
+                messageEl.textContent = result.message || 'Rezerwacja wysłana! Sprawdź swoją skrzynkę email.';
                 messageEl.classList.add('success');
                 bookingForm.reset();
                 document.querySelectorAll('.class-card').forEach(c => c.classList.remove('selected'));
