@@ -26,6 +26,7 @@
             <li><a href="#services">Oferta</a></li>
             <li><a href="#blog">Blog</a></li>
             <li><a href="#about">O mnie</a></li>
+            <li><a href="#rezerwacje">Rezerwacje</a></li>
             <li><a href="#contact">Kontakt</a></li>
         </ul>
     </nav>
@@ -36,7 +37,7 @@
                 <h1>Znajdź swój wewnętrzny spokój</h1>
                 <p>Odkryj harmonię ciała i umysłu poprzez praktykę jogi. W świecie pełnym chaosu i pośpiechu, stwórz
                     swoją przestrzeń wyciszenia i równowagi.</p>
-                <a href="#services" class="cta-button">Rozpocznij swoją podróż</a>
+                <a href="#rezerwacje" class="cta-button">Zarezerwuj miejsce</a>
             </div>
             <div class="hero-image">
                 <img src="img/hero.jpg" alt="Yoga Instructor" class="hero-photo">
@@ -93,6 +94,37 @@
                 marzeniem było stworzenie miejsca, gdzie każdy może czuć się akceptowany, takim jaki jest. Stąd, wziął
                 się pomysł na stworzenie miejsca, gdzie każdy może czuć się zaopiekowany i wyjątkowy. I tak powstało
                 studio Little Yogini w zameczku Sterckshof. </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="rezerwacje" class="rezerwacje">
+        <h2>Rezerwacje</h2>
+        <p class="rezerwacje-subtitle">Wybierz zajęcia i zarezerwuj swoje miejsce na macie.</p>
+        <div class="rezerwacje-container">
+            <div class="class-cards" id="class-cards">
+                <!-- Loaded dynamically from classes.json -->
+            </div>
+            <div class="booking-form-wrapper" id="booking-form-wrapper">
+                <h3>Twoje dane</h3>
+                <div id="selected-class-info" class="selected-class-info"></div>
+                <form id="booking-form" class="booking-form" novalidate>
+                    <input type="hidden" id="form-class-id" name="classId">
+                    <input type="hidden" id="form-class-day" name="classDay">
+                    <input type="hidden" id="form-class-time" name="classTime">
+                    <input type="hidden" id="form-class-desc" name="classDescription">
+                    <div class="form-group">
+                        <label for="form-name">Imię i nazwisko</label>
+                        <input type="text" id="form-name" name="name" placeholder="np. Anna Kowalska" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email">Adres email</label>
+                        <input type="email" id="form-email" name="email" placeholder="np. anna@email.com" required>
+                    </div>
+                    <button type="submit" class="submit-button" id="submit-button">Zarezerwuj miejsce</button>
+                    <p id="form-message" class="form-message"></p>
+                </form>
             </div>
         </div>
     </section>

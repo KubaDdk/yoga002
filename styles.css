@@ -416,6 +416,204 @@ body {
 }
 
 
+/* Reservation Section */
+.rezerwacje {
+    min-height: 100vh;
+    background-color: var(--color-tan);
+    padding: 5rem 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rezerwacje h2 {
+    text-align: center;
+    color: #333;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.rezerwacje-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 3rem;
+}
+
+.rezerwacje-container {
+    display: flex;
+    gap: 4rem;
+    width: 100%;
+    max-width: 1100px;
+    align-items: flex-start;
+}
+
+.class-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.class-card {
+    background-color: var(--color-white);
+    border-radius: 15px;
+    padding: 2rem;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.class-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.class-card.selected {
+    border-color: var(--color-brown);
+    box-shadow: 0 6px 18px rgba(157, 91, 52, 0.25);
+}
+
+.class-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.class-day {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-brown);
+}
+
+.class-time {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #555;
+    background-color: var(--color-beige);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+}
+
+.class-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.booking-form-wrapper {
+    flex: 1;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.booking-form-wrapper h3 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.selected-class-info {
+    background-color: var(--color-beige);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: #555;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.selected-class-info.has-selection {
+    color: var(--color-brown);
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #444;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--color-beige);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--color-sage);
+    color: #333;
+    transition: border-color 0.3s ease;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--color-brown);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background-color: var(--color-brown);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: var(--color-light-brown);
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-message {
+    margin-top: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    min-height: 1.5rem;
+}
+
+.form-message.success {
+    color: #2d7a4f;
+}
+
+.form-message.error {
+    color: #c0392b;
+}
+
+@media (max-width: 768px) {
+    .rezerwacje {
+        padding: 3rem 5%;
+    }
+
+    .rezerwacje-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .booking-form-wrapper {
+        padding: 1.5rem;
+    }
+}
+
 .contact {
     padding: 5rem 20%;
     background-color: var(--color-sage);
