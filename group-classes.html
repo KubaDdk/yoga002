@@ -9,15 +9,7 @@
     <!-- Load the group classes specific styles -->
     <link rel="stylesheet" href="group-classes.css">
     <link rel="stylesheet" href="mobile.css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VRX6WE3Z76"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'G-VRX6WE3Z76');
-    </script>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -120,6 +112,19 @@ Zajęcia są otwarte dla wszystkich, niezależnie od wieku, kondycji czy wcześn
         <p>&copy; 2025 Little Yogini. All rights reserved.</p>
     </footer>
 
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-banner__content">
+            <p class="cookie-banner__title">Ta strona używa plików cookie</p>
+            <p class="cookie-banner__text">Używamy plików cookie Google Analytics, aby analizować ruch na stronie i poprawiać jej działanie. Twoje dane są anonimowe.</p>
+        </div>
+        <div class="cookie-banner__buttons">
+            <button id="cookie-accept" class="cookie-btn cookie-btn--accept">Akceptuję</button>
+            <button id="cookie-reject" class="cookie-btn cookie-btn--reject">Odrzuć</button>
+        </div>
+    </div>
+
     <script src="scripts.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 </html>
